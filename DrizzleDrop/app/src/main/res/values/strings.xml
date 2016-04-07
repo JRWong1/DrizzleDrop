@@ -1,7 +1,6 @@
 <resources>
     <string name="app_name">DrizzleDrop</string>
     <string name="action_settings">Settings</string>
-    <string name="section_format">Hello World from section: %1$d</string>
     <string name="yahooClientId">dj0yJmk9U0xEWVVpYXlmUGxaJmQ9WVdrOVRVZHhhamgxTkdNbWNHbzlNQS0tJnM9Y29uc3VtZXJzZWNyZXQmeD04Ng--</string>
     <string name="yahooClientSecret">04949a1ce82e7e7074a47be4eccb650537d3756a</string>
 </resources>
