@@ -1,8 +1,15 @@
 package com.drizzledrop.drizzledrop;
 
+import android.app.Activity;
+import android.app.Dialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.support.annotation.Nullable;
+import android.support.v4.app.DialogFragment;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
@@ -16,8 +23,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -31,6 +38,31 @@ public class MainActivity extends AppCompatActivity {
      */
     private SectionsPagerAdapter mSectionsPagerAdapter;
 
+
+
+/*
+        public void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.fragment_main);
+            final  TextView t = (TextView)findViewById(R.id.selectLocation);
+
+            t.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    DialogFragment newFragment = new PlaceholderFragment.SelectDestinationDialogFragment();
+                    newFragment.show(newFragment.getFragmentManager(), "Location");
+
+                    Context context = getApplicationContext();
+                    CharSequence text = "Hello toast!";
+                    int duration = Toast.LENGTH_SHORT;
+
+                    Toast toast = Toast.makeText(context, text, duration);
+                    toast.show();
+                }
+            });
+        }
+
+*/
     /**
      * The {@link ViewPager} that will host the section contents.
      */
@@ -39,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -53,8 +86,18 @@ public class MainActivity extends AppCompatActivity {
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
+      }
 
+    public void onClick(View view) {
+        DialogFragment newFragment = new PlaceholderFragment.SelectDestinationDialogFragment();
+        newFragment.show(getSupportFragmentManager(), "Location");
 
+       /* Context context = getApplicationContext();
+        CharSequence text = "Hello toast!";
+        int duration = Toast.LENGTH_SHORT;
+
+        Toast toast = Toast.makeText(context, text, duration);
+        toast.show();*/
     }
 
     /**
@@ -90,6 +133,8 @@ public class MainActivity extends AppCompatActivity {
             }
             return null;
         }
+
+
     }
 
     /**
@@ -115,7 +160,11 @@ public class MainActivity extends AppCompatActivity {
         }
 
         public PlaceholderFragment() {
+
         }
+
+
+
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -124,5 +173,17 @@ public class MainActivity extends AppCompatActivity {
             TextView textView = (TextView) rootView.findViewById(R.id.section_label);
             return rootView;
         }
+
+        public static class SelectDestinationDialogFragment extends DialogFragment {
+            public Dialog onCreateDialog(Bundle savedInstanceState) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setMessage(R.string.selectPlace).setTitle(R.string.selectPlaceTitle);
+
+                return builder.create();
+            }
+
+        }
+
     }
 }
+
