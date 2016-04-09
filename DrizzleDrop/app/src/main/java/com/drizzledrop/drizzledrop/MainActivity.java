@@ -26,6 +26,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Objects;
+
 public class MainActivity extends AppCompatActivity {
 
     /**
@@ -37,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
      * {@link android.support.v4.app.FragmentStatePagerAdapter}.
      */
     private SectionsPagerAdapter mSectionsPagerAdapter;
+    private static String location = "Click to select location";
 
 
 
@@ -86,20 +89,37 @@ public class MainActivity extends AppCompatActivity {
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
-      }
+             }
 
     public void onClick(View view) {
+
         DialogFragment newFragment = new PlaceholderFragment.SelectDestinationDialogFragment();
         newFragment.show(getSupportFragmentManager(), "Location");
+   
 
        /* Context context = getApplicationContext();
         CharSequence text = "Hello toast!";
         int duration = Toast.LENGTH_SHORT;
 
         Toast toast = Toast.makeText(context, text, duration);
-        toast.show();*/
+        toast.show();
+        MainActivity.this.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                String update_str = getString(R.string.location);
+                TextView t = (TextView)findViewById(R.id.selectLocation);
+                t.setText(update_str);
+                System.out.println("updated");
+            }
+        });*/
     }
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
+        View V = inflater.inflate(R.layout.fragment_main, container, false);
+        TextView t = (TextView)V.findViewById(R.id.selectLocation);
+        t.setText(location);
+        return V;
+    }
     /**
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
      * one of the sections/tabs/pages.
@@ -170,14 +190,21 @@ public class MainActivity extends AppCompatActivity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-            TextView textView = (TextView) rootView.findViewById(R.id.section_label);
+
             return rootView;
         }
 
         public static class SelectDestinationDialogFragment extends DialogFragment {
             public Dialog onCreateDialog(Bundle savedInstanceState) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                builder.setMessage(R.string.selectPlace).setTitle(R.string.selectPlaceTitle);
+                builder.setTitle(R.string.selectPlace).setItems(R.array.stops_array, new DialogInterface.OnClickListener(){
+                    public void onClick(DialogInterface dialog, int which){
+                        String[] stops = getResources().getStringArray(R.array.stops_array);
+                       System.out.println("Clicked: " + stops[which]);
+                        location = stops[which];
+
+                    }
+                });
 
                 return builder.create();
             }

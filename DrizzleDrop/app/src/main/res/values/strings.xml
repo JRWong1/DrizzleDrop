@@ -5,4 +5,20 @@
     <string name="yahooClientSecret">04949a1ce82e7e7074a47be4eccb650537d3756a</string>
     <string name="selectPlace">Please select a location</string>
     <string name="selectPlaceTitle">Location</string>
+    <string-array name="stops_array">
+        <item>Newport</item>
+        <item>Christopher Street</item>
+        <item>9th Street</item>
+        <item>Journal Square</item>
+        <item>Hoboken</item>
+        <item>14th Street</item>
+        <item>Harrison</item>
+        <item>Newark</item>
+        <item>33rd Street</item>
+        <item>World Trade Center</item>
+        <item>Grove Street</item>
+        <item>23rd Street</item>
+        <item>Exchange Place</item>
+    </string-array>
+    <string name="location">Click to select location</string>
 </resources>
