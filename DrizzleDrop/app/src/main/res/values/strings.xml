@@ -21,4 +21,5 @@
         <item>Exchange Place</item>
     </string-array>
     <string name="location">Click to select location</string>
+    <string name="title_activity_delay_calc">Calculated Delay</string>
 </resources>

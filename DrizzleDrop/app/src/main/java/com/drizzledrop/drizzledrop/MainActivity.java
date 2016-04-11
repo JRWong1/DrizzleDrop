@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Handler;
 import android.preference.Preference;
@@ -92,6 +93,12 @@ public class MainActivity extends AppCompatActivity  {
         newFragment.show(getSupportFragmentManager(), "Location");
     }
 
+    public void onClick1(View view) throws ClassNotFoundException {
+        //Class clazz = new Class.forName("com.drizzledrop.drizzledrop." + "DelayCalc");
+
+            Intent intent = new Intent(this, DelayCalc.class);// Class.forName("com.drizzledrop.drizzledrop.DelayCalc"));
+            startActivity(intent);
+    }
 
 
     /**
@@ -190,6 +197,8 @@ public class MainActivity extends AppCompatActivity  {
                         TextView t = (TextView) view.findViewById(R.id.select);
                         t.setText(location);
                         System.out.println(t.getText());
+                        t.invalidate();
+                        view.invalidate();
                         }
                 });
 
