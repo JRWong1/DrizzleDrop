@@ -28,10 +28,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CalendarView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity  {
@@ -46,8 +50,8 @@ public class MainActivity extends AppCompatActivity  {
      */
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private static String location = "Click to select location";
-    private TextView t;
     public static int vehicle;
+    public static String date;
 
     /**
      * The {@link ViewPager} that will host the section contents.
@@ -83,10 +87,31 @@ public class MainActivity extends AppCompatActivity  {
                 TextView t = (TextView) view.findViewById(R.id.select);
                 t.setText(location);
                 System.out.println(t.getText());
+                initializeCal();
             }
         });
 
-        }
+    }
+    public void initializeCal(){
+        Context context = getApplicationContext();
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View view = inflater.inflate(R.layout.fragment_main, null);
+        CalendarView cal = (CalendarView)view.findViewById(R.id.calendarView);
+        cal.setShowWeekNumber(false);
+        cal.setFirstDayOfWeek(2);
+        System.out.println("Created cal!");
+
+        cal.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+            @Override
+            public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
+                date = String.valueOf(month) + "/" + String.valueOf(dayOfMonth);
+                //thisYear = String.valueOf(year);
+                Toast.makeText(getApplicationContext(), dayOfMonth + "/" + month + "/" + year, Toast.LENGTH_LONG).show();
+
+                System.out.println("Date Changed!");
+            }
+        });
+    }
 
     public void onClick(View view) {
 
@@ -97,6 +122,11 @@ public class MainActivity extends AppCompatActivity  {
     public void onClick1(View view) throws ClassNotFoundException {
         vehicle = mViewPager.getCurrentItem();
         System.out.println(vehicle);
+        CalendarView cal = (CalendarView)findViewById(R.id.calendarView);
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        String selectedDate = sdf.format(new Date(cal.getDate()));
+        date = selectedDate;
+        System.out.println(selectedDate);
         Intent intent = new Intent(this, DelayCalc.class);// Class.forName("com.drizzledrop.drizzledrop.DelayCalc"));
             startActivity(intent);
     }
