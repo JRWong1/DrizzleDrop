@@ -17,24 +17,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/calendarView"
-        android:layout_below="@+id/selectLocation"
-        android:layout_alignParentStart="true" />
+        android:layout_below="@+id/section_label"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="44dp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:id="@+id/selectLocation"
-        android:textAlignment="center"
-        android:height="50dp"
-        android:textSize="20dp"
-        android:text="@string/location"
-        android:clickable="true"
-        android:onClick="onClick"
-        android:focusable="false"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true" />
+
 
     <Button
         android:layout_width="wrap_content"
@@ -42,8 +29,22 @@
         android:text="Calculate Delay"
         android:id="@+id/button"
         android:background="#b8c7c7"
-        android:layout_below="@+id/calendarView"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentStart="true"/>
+        android:layout_alignBottom="@+id/calendarView"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/select"
+        android:layout_below="@+id/section_label"
+        android:layout_alignEnd="@+id/calendarView"
+        android:layout_toEndOf="@+id/section_label"
+        android:editable="false"
+        android:text="Click to select location"
+        android:onClick="onClick"
+        android:clickable="true"
+        android:textAlignment="center" />
 
 </RelativeLayout>

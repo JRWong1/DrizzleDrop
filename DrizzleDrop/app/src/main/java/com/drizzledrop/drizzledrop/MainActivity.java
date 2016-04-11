@@ -4,6 +4,10 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
+import android.os.Handler;
+import android.preference.Preference;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.design.widget.TabLayout;
@@ -23,12 +27,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Objects;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity  {
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -40,32 +45,8 @@ public class MainActivity extends AppCompatActivity {
      */
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private static String location = "Click to select location";
+    private TextView t;
 
-
-
-/*
-        public void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            setContentView(R.layout.fragment_main);
-            final  TextView t = (TextView)findViewById(R.id.selectLocation);
-
-            t.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    DialogFragment newFragment = new PlaceholderFragment.SelectDestinationDialogFragment();
-                    newFragment.show(newFragment.getFragmentManager(), "Location");
-
-                    Context context = getApplicationContext();
-                    CharSequence text = "Hello toast!";
-                    int duration = Toast.LENGTH_SHORT;
-
-                    Toast toast = Toast.makeText(context, text, duration);
-                    toast.show();
-                }
-            });
-        }
-
-*/
     /**
      * The {@link ViewPager} that will host the section contents.
      */
@@ -89,37 +70,30 @@ public class MainActivity extends AppCompatActivity {
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
-             }
+
+        Handler handler = new Handler();
+        handler.post(new Runnable() {
+            public void run() {
+                Context context = getApplicationContext();
+                LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+                View view = inflater.inflate(R.layout.fragment_main, null);
+                TextView t = (TextView) view.findViewById(R.id.select);
+                t.setText(location);
+                System.out.println(t.getText());
+            }
+        });
+
+        }
 
     public void onClick(View view) {
 
         DialogFragment newFragment = new PlaceholderFragment.SelectDestinationDialogFragment();
         newFragment.show(getSupportFragmentManager(), "Location");
-   
-
-       /* Context context = getApplicationContext();
-        CharSequence text = "Hello toast!";
-        int duration = Toast.LENGTH_SHORT;
-
-        Toast toast = Toast.makeText(context, text, duration);
-        toast.show();
-        MainActivity.this.runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                String update_str = getString(R.string.location);
-                TextView t = (TextView)findViewById(R.id.selectLocation);
-                t.setText(update_str);
-                System.out.println("updated");
-            }
-        });*/
     }
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View V = inflater.inflate(R.layout.fragment_main, container, false);
-        TextView t = (TextView)V.findViewById(R.id.selectLocation);
-        t.setText(location);
-        return V;
-    }
+
+
     /**
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
      * one of the sections/tabs/pages.
@@ -139,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public int getCount() {
-            // Show 3 total pages.
+            // Show 2 total pages.
             return 2;
         }
 
@@ -147,6 +121,7 @@ public class MainActivity extends AppCompatActivity {
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
+
                     return "Train";
                 case 1:
                     return "Bus";
@@ -184,13 +159,18 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-
-
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-
+    /*
+                Context context = getContext();
+                LayoutInflater inflater1 = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+    */
+                View view = inflater.inflate(R.layout.fragment_main, container, false);
+                TextView t = (TextView) view.findViewById(R.id.select);
+                t.setText(location);
+            rootView.invalidate();
             return rootView;
         }
 
@@ -203,7 +183,14 @@ public class MainActivity extends AppCompatActivity {
                        System.out.println("Clicked: " + stops[which]);
                         location = stops[which];
 
-                    }
+                        Context context = getContext();
+                        LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+                        View view = inflater.inflate(R.layout.fragment_main, null);
+                        TextView t = (TextView) view.findViewById(R.id.select);
+                        t.setText(location);
+                        System.out.println(t.getText());
+                        }
                 });
 
                 return builder.create();
