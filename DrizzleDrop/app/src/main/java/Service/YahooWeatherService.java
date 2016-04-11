@@ -29,14 +29,17 @@ public class YahooWeatherService {
         return location;
     }
 
-    public void refreshWeather(String location) {
+    public void refreshWeather(String l) {
+        this.location = l;
         new AsyncTask<String, Void, String>() {
             @Override
             protected String doInBackground(String... params) {
 
-                String YQL = String.format("select * from weather.forecast where woeid in (select woeid from geo.places(1) where text=\"&s\")", getLocation());
 
-                String enpoint = String.format("https://query.yahooapis.com/v1/public/yql?q=&s&format=json", Uri.encode(YQL));
+
+                String YQL = String.format("select * from weather.forecast where woeid in (select woeid from geo.places(1) where text=\"New York, NY\")");
+
+                String enpoint ="https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D%22New%20York%2C%20NY%22)&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys";
 
                 try {
                     URL url = new URL(enpoint);
@@ -74,7 +77,7 @@ public class YahooWeatherService {
 
                     int count = queryResults.optInt("count");
                     if(count == 0){
-                        callback.serviceFailure(new LocationWeatherException("No location information found"));
+                        callback.serviceFailure(new LocationWeatherException("No location information found for " + location));
                         return;
                     }
 

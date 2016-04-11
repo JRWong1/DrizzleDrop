@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity  {
      * {@link android.support.v4.app.FragmentStatePagerAdapter}.
      */
     private SectionsPagerAdapter mSectionsPagerAdapter;
-    private static String location = "Click to select location";
+    public static String location = "Click to select location";
     public static int vehicle;
     public static String date;
 

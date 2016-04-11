@@ -9,6 +9,7 @@ public class Channel implements JSONPopulator {
     private Item item;
     private Units units;
 
+
     public Units getUnits() {
         return units;
     }

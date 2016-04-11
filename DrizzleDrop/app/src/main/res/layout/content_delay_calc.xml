@@ -75,9 +75,44 @@
         android:id="@+id/DelayTime"
         android:layout_below="@+id/expectedDelay"
         android:layout_alignStart="@+id/expectedDelay"
-        android:layout_alignBottom="@+id/weatherIcon"
         android:layout_alignEnd="@+id/expectedDelay"
         android:textAlignment="center"
         android:textSize="35dp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:layout_alignBottom="@+id/weatherIcon" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Temperature: 72 F"
+        android:id="@+id/tempTextView"
+        android:textAlignment="center"
+        android:textSize="30dp"
+        android:layout_marginTop="48dp"
+        android:textStyle="bold"
+        android:layout_below="@+id/weatherIcon"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Condition"
+        android:id="@+id/condTextView"
+        android:textSize="25dp"
+        android:textAlignment="center"
+        android:layout_below="@+id/tempTextView"
+        android:layout_alignEnd="@+id/DelayTime"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="New Jersey"
+        android:layout_marginTop="80dp"
+        android:id="@+id/lcoationTextView"
+        android:layout_alignTop="@+id/tempTextView"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>

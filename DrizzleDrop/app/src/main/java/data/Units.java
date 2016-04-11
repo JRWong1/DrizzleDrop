@@ -7,6 +7,10 @@ import org.json.JSONObject;
  */
 public class Units implements JSONPopulator {
 
+    public String getTemp() {
+        return temp;
+    }
+
     private String temp;
     @Override
     public void populate(JSONObject data) {

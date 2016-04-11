@@ -22,10 +22,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".DelayScreen"
-            android:label="Delay and Weather"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".DelayCalc"
             android:label="@string/title_activity_delay_calc"
             android:theme="@style/AppTheme.NoActionBar" >

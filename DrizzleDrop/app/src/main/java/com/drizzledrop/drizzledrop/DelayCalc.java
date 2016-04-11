@@ -1,5 +1,6 @@
 package com.drizzledrop.drizzledrop;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -15,13 +16,17 @@ import android.widget.Toast;
 import Service.WeatherServiceCallback;
 import Service.YahooWeatherService;
 import data.Channel;
+import data.Item;
 
 public class DelayCalc extends AppCompatActivity implements WeatherServiceCallback {
 
     private ImageView vehiclePic;
     private ImageView weatherPic;
     private TextView date;
-    private TextView delay;
+    private TextView delayTime;
+    private TextView temp;
+    private TextView cond;
+    private TextView local;
 
     private YahooWeatherService service;
     private ProgressDialog dialog;
@@ -44,19 +49,36 @@ public class DelayCalc extends AppCompatActivity implements WeatherServiceCallba
         date = (TextView)findViewById(R.id.dateDisplay);
         date.setText(MainActivity.date);
 
-        delay = (TextView)findViewById(R.id.DelayTime);
+        delayTime = (TextView)findViewById(R.id.DelayTime);
         weatherPic = (ImageView)findViewById(R.id.weatherIcon);
+        temp = (TextView)findViewById(R.id.tempTextView);
+        cond = (TextView)findViewById(R.id.condTextView);
+        local = (TextView)findViewById(R.id.lcoationTextView);
+        local.setText(MainActivity.location);
 
         service = new YahooWeatherService(this);
         dialog = new ProgressDialog(this);
         dialog.setMessage("Loading...");
         dialog.show();
-        service.refreshWeather("Matawan, NJ");
+        service.refreshWeather("New York, NY");
     }
 
     @Override
     public void serviceSuccess(Channel channel) {
         dialog.hide();
+
+        Item item = channel.getItem();
+        //int resourceId = getResources().getIdentifier("drawable/icon_" + item.getCondition().getCode(), null, getPackageName());
+
+        //@SuppressLint("deprecation")
+        //Drawable weatherIconDrawable = getResources().getDrawable(resourceId);
+
+        //weatherPic.setImageDrawable(weatherIconDrawable);
+
+        temp.setText(item.getCondition().getTemp()+"\u00B0"+channel.getUnits().getTemp());
+        cond.setText(item.getCondition().getDesc());
+        local.setText(service.getLocation());
+
     }
 
     @Override
