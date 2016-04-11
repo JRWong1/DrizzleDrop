@@ -1,5 +1,6 @@
 package com.drizzledrop.drizzledrop;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -18,7 +19,12 @@ public class DelayCalc extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         ImageView vehiclePic = (ImageView)findViewById(R.id.VehiclePic);
-        //vehiclePic.setImageDrawable(R.drawable.);
+        if(MainActivity.vehicle == 0)
+            vehiclePic.setImageResource(R.drawable.train);
+        else if(MainActivity.vehicle == 1)
+            vehiclePic.setImageResource(R.drawable.bus);
+        else
+            System.out.println("Could not display image");
     }
 
 }

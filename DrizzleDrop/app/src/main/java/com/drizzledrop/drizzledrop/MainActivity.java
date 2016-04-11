@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity  {
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private static String location = "Click to select location";
     private TextView t;
+    public static int vehicle;
 
     /**
      * The {@link ViewPager} that will host the section contents.
@@ -94,9 +95,9 @@ public class MainActivity extends AppCompatActivity  {
     }
 
     public void onClick1(View view) throws ClassNotFoundException {
-        //Class clazz = new Class.forName("com.drizzledrop.drizzledrop." + "DelayCalc");
-
-            Intent intent = new Intent(this, DelayCalc.class);// Class.forName("com.drizzledrop.drizzledrop.DelayCalc"));
+        vehicle = mViewPager.getCurrentItem();
+        System.out.println(vehicle);
+        Intent intent = new Intent(this, DelayCalc.class);// Class.forName("com.drizzledrop.drizzledrop.DelayCalc"));
             startActivity(intent);
     }
 
