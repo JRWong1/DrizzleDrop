@@ -60,7 +60,7 @@ public class DelayCalc extends AppCompatActivity implements WeatherServiceCallba
         dialog = new ProgressDialog(this);
         dialog.setMessage("Loading...");
         dialog.show();
-        service.refreshWeather("New York, NY");
+        service.refreshWeather("New York");
     }
 
     @Override
@@ -68,12 +68,12 @@ public class DelayCalc extends AppCompatActivity implements WeatherServiceCallba
         dialog.hide();
 
         Item item = channel.getItem();
-        //int resourceId = getResources().getIdentifier("drawable/icon_" + item.getCondition().getCode(), null, getPackageName());
+       /* int resourceId = getResources().getIdentifier("drawable/icon_" + item.getCondition().getCode(), null, getPackageName());
 
-        //@SuppressLint("deprecation")
-        //Drawable weatherIconDrawable = getResources().getDrawable(resourceId);
+        @SuppressLint("deprecation")
+        Drawable weatherIconDrawable = getResources().getDrawable(resourceId);
 
-        //weatherPic.setImageDrawable(weatherIconDrawable);
+        weatherPic.setImageDrawable(weatherIconDrawable);*/
 
         temp.setText(item.getCondition().getTemp()+"\u00B0"+channel.getUnits().getTemp());
         cond.setText(item.getCondition().getDesc());

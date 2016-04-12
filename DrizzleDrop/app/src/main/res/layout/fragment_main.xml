@@ -43,7 +43,7 @@
         android:layout_alignEnd="@+id/calendarView"
         android:layout_toEndOf="@+id/section_label"
         android:editable="false"
-        android:text="Click to select location"
+        android:text="World Trade Center"
         android:onClick="onClick"
         android:clickable="true"
         android:textAlignment="center" />
