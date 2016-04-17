@@ -41,7 +41,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/weatherIcon"
         android:minWidth="100dp"
-        android:src="@drawable/thunderstorm"
+        android:src="@drawable/icon_3200"
         android:minHeight="100dp"
         android:maxHeight="150dp"
         android:adjustViewBounds="true"

@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.drizzledrop.drizzledrop" >
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -11,9 +11,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
         <activity
+            android:name=".DelayCalc"
+            android:label="@string/title_activity_delay_calc"
+            android:theme="@style/AppTheme.NoActionBar" >
+        </activity>
+        <activity
             android:name=".MainActivity"
-            android:label="@string/app_name"
-            android:screenOrientation="portrait"
+            android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,8 +26,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".DelayCalc"
-            android:label="@string/title_activity_delay_calc"
+            android:name=".DateAndLocSelect"
+            android:label="@string/title_activity_date_and_loc_select"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
     </application>

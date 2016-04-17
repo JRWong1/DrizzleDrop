@@ -47,14 +47,14 @@ public class DelayCalc extends AppCompatActivity implements WeatherServiceCallba
             System.out.println("Could not display image");
 
         date = (TextView)findViewById(R.id.dateDisplay);
-        date.setText(MainActivity.date);
+        date.setText(DateAndLocSelect.date);
 
         delayTime = (TextView)findViewById(R.id.DelayTime);
         weatherPic = (ImageView)findViewById(R.id.weatherIcon);
         temp = (TextView)findViewById(R.id.tempTextView);
         cond = (TextView)findViewById(R.id.condTextView);
         local = (TextView)findViewById(R.id.lcoationTextView);
-        local.setText(MainActivity.location);
+        local.setText(DateAndLocSelect.location);
 
         service = new YahooWeatherService(this);
         dialog = new ProgressDialog(this);
@@ -68,12 +68,13 @@ public class DelayCalc extends AppCompatActivity implements WeatherServiceCallba
         dialog.hide();
 
         Item item = channel.getItem();
-       /* int resourceId = getResources().getIdentifier("drawable/icon_" + item.getCondition().getCode(), null, getPackageName());
+        int resourceId = getResources().getIdentifier("drawable/icon_" + item.getCondition().getCode(), null, getPackageName());
 
-        @SuppressLint("deprecation")
+        //@SuppressLint("deprecation")
+        //Drawable weatherIconDrawable = getResources().getDrawable(resourceId);
         Drawable weatherIconDrawable = getResources().getDrawable(resourceId);
 
-        weatherPic.setImageDrawable(weatherIconDrawable);*/
+        weatherPic.setImageDrawable(weatherIconDrawable);
 
         temp.setText(item.getCondition().getTemp()+"\u00B0"+channel.getUnits().getTemp());
         cond.setText(item.getCondition().getDesc());
