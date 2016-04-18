@@ -1,5 +1,6 @@
 package com.drizzledrop.drizzledrop;
 
+import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -19,6 +20,9 @@ import android.view.ViewGroup;
 
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class MainActivity extends AppCompatActivity {
 
     /**
@@ -36,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
      */
     private ViewPager mViewPager;
     public static String location = "Click to select location";
-    public static int vehicle;
+    public static int vehicle = 0;
     public static String date;
 
     @Override
@@ -56,9 +60,18 @@ public class MainActivity extends AppCompatActivity {
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
+    }
 
+    public void onClickCalculate(View view) {
+        vehicle = mViewPager.getCurrentItem();
+        if (date == "") {
 
+            String tempDate = new SimpleDateFormat("MM/dd/yyyy").format(new Date());
 
+            date = String.valueOf(tempDate);
+        }
+        Intent intent = new Intent(this, DelayCalc.class);
+        startActivity(intent);
     }
 
 
