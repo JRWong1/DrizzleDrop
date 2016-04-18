@@ -1,9 +1,14 @@
 package com.drizzledrop.drizzledrop;
 
+import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
@@ -73,9 +78,16 @@ public class MainActivity extends AppCompatActivity {
             String tempDate = new SimpleDateFormat("MM/dd/yyyy").format(new Date());
 
             date = String.valueOf(tempDate);
+            System.out.println(tempDate);
         }
         Intent intent = new Intent(this, DelayCalc.class);
         startActivity(intent);
+    }
+
+    public void onClickSelect(View view) {
+
+        DialogFragment newFragment = new SelectDestinationDialogFragment();
+        newFragment.show(getSupportFragmentManager(), "Location");
     }
 
 
@@ -184,5 +196,25 @@ public class MainActivity extends AppCompatActivity {
 
             return rootView;
         }
+    }
+
+    @SuppressLint("ValidFragment")
+    private class SelectDestinationDialogFragment extends DialogFragment {
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+            builder.setTitle(R.string.selectPlace).setItems(R.array.stops_array, new DialogInterface.OnClickListener(){
+                public void onClick(DialogInterface dialog, int which){
+                    String[] stops = getResources().getStringArray(R.array.stops_array);
+                    System.out.println("Clicked: " + stops[which]);
+                    location = stops[which];
+                    t.setText(location);
+                    System.out.println(t.getText());
+                    t.invalidate();
+                }
+            });
+
+            return builder.create();
+        }
+
     }
 }
