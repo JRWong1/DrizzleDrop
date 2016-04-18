@@ -23,4 +23,6 @@
     <string name="title_activity_main">Select method of transport</string>
     <string name="title_activity_date_and_loc_select">Select a date and location</string>
     <string name="selectPlace">Select Location</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="title_activity_main2">Main2Activity</string>
 </resources>

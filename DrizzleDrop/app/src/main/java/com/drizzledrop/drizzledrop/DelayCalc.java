@@ -47,14 +47,14 @@ public class DelayCalc extends AppCompatActivity implements WeatherServiceCallba
             System.out.println("Could not display image");
 
         date = (TextView)findViewById(R.id.dateDisplay);
-        date.setText(DateAndLocSelect.date);
+        date.setText(MainActivity.date);
 
         delayTime = (TextView)findViewById(R.id.DelayTime);
         weatherPic = (ImageView)findViewById(R.id.weatherIcon);
         temp = (TextView)findViewById(R.id.tempTextView);
         cond = (TextView)findViewById(R.id.condTextView);
         local = (TextView)findViewById(R.id.lcoationTextView);
-        local.setText(DateAndLocSelect.location);
+        local.setText(MainActivity.location);
 
         service = new YahooWeatherService(this);
         dialog = new ProgressDialog(this);
