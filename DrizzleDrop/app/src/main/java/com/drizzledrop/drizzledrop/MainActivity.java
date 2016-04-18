@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
     private ViewPager mViewPager;
     public static String location = "Click to select location";
     public static int vehicle = 0;
-    public static String date;
+    public static String date = "";
     private static TextView t;
 
     @Override
