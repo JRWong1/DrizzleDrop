@@ -18,7 +18,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.widget.CalendarView;
 import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -42,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
     public static String location = "Click to select location";
     public static int vehicle = 0;
     public static String date;
+    private static TextView t;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -142,6 +146,7 @@ public class MainActivity extends AppCompatActivity {
          * fragment.
          */
         private static final String ARG_SECTION_NUMBER = "section_number";
+        private CalendarView calendarView;
 
         /**
          * Returns a new instance of this fragment for the given section
@@ -164,6 +169,19 @@ public class MainActivity extends AppCompatActivity {
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
             TextView textView = (TextView) rootView.findViewById(R.id.TextViewLocation);
             textView.setText(location);
+
+            t=textView;
+
+            calendarView = (CalendarView)rootView.findViewById(R.id.calendarView);
+            calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+
+                @Override
+                public void onSelectedDayChange(CalendarView view, int year, int month,
+                                                int dayOfMonth) {
+                    date = String.valueOf((month + 1) + "/" + dayOfMonth + "/" + year);
+                }
+            });
+
             return rootView;
         }
     }
