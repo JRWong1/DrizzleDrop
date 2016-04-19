@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.setupWithViewPager(mViewPager);
     }
 
-    public void onClickCalculate(View view) {
+    /*public void onClickCalculate(View view) {
         vehicle = mViewPager.getCurrentItem();
         if (date == "") {
 
@@ -83,13 +83,13 @@ public class MainActivity extends AppCompatActivity {
         }
         Intent intent = new Intent(this, DelayCalc.class);
         startActivity(intent);
-    }
+    }*/
 
-    public void onClickSelect(View view) {
+    /*public void onClickSelect(View view) {
 
         DialogFragment newFragment = new SelectDestinationDialogFragment();
         newFragment.show(getSupportFragmentManager(), "Location");
-    }
+    }*/
 
 
     @Override
@@ -129,7 +129,12 @@ public class MainActivity extends AppCompatActivity {
         public Fragment getItem(int position) {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
-            return PlaceholderFragment.newInstance(position + 1);
+            //return PlaceholderFragment.newInstance(position + 1);
+            switch (position){
+                case 0: return Train.newInstance();
+                case 1: return Bus.newInstance();
+            }
+            return null;
         }
 
         @Override
@@ -180,7 +185,7 @@ public class MainActivity extends AppCompatActivity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-            TextView textView = (TextView) rootView.findViewById(R.id.TextViewLocation);
+            /*TextView textView = (TextView) rootView.findViewById(R.id.TextViewLocation);
             textView.setText(location);
 
             t=textView;
@@ -193,14 +198,14 @@ public class MainActivity extends AppCompatActivity {
                                                 int dayOfMonth) {
                     date = String.valueOf((month + 1) + "/" + dayOfMonth + "/" + year);
                 }
-            });
+            });*/
 
             return rootView;
         }
     }
 
     @SuppressLint("ValidFragment")
-    private class SelectDestinationDialogFragment extends DialogFragment {
+    public class SelectDestinationDialogFragment extends DialogFragment {
         public Dialog onCreateDialog(Bundle savedInstanceState) {
             AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
             builder.setTitle(R.string.selectPlace).setItems(R.array.stops_array, new DialogInterface.OnClickListener(){
