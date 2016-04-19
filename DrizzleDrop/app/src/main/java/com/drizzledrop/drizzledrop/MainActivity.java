@@ -3,6 +3,7 @@ package com.drizzledrop.drizzledrop;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.design.widget.TabLayout;
@@ -206,6 +207,9 @@ public class MainActivity extends AppCompatActivity {
                 public void onClick(DialogInterface dialog, int which){
                     String[] stops = getResources().getStringArray(R.array.stops_array);
                     System.out.println("Clicked: " + stops[which]);
+
+
+
                     location = stops[which];
                     t.setText(location);
                     System.out.println(t.getText());
