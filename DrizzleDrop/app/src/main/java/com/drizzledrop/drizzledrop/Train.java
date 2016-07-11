@@ -2,6 +2,7 @@ package com.drizzledrop.drizzledrop;
 
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -14,6 +15,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.TextView;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.Fragment;
 
 import java.text.SimpleDateFormat;
@@ -22,7 +25,7 @@ import java.util.Date;
 /**
  * Created by David on 4/18/2016.
  */
-public class Train extends Fragment {
+public class Train extends Fragment{
    public static Train newInstance(){
        Train train = new Train();
        return train;
